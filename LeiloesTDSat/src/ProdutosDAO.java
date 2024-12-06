@@ -1,11 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
 /**
  *
- * @author Adm
+ * @author Flavio Brito
  */
 
 import java.sql.PreparedStatement;
@@ -15,8 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-
-
 public class ProdutosDAO {
     
     Connection conn;
@@ -25,12 +19,12 @@ public class ProdutosDAO {
     ArrayList<ProdutosDTO> listagem = new ArrayList<>();
     
      public void cadastrarProduto (ProdutosDTO produto){
+         
+        String sql = "INSERT INTO produtos (nome, valor, status) VALUES (  ?, ?, ? )";           
         
-        try {           
-                conn = new conectaDAO().connectDB();
-                String sql = "INSERT INTO produtos (nome, valor, status) VALUES (  ?, ?, ? )";
-
-                prep = conn.prepareStatement(sql);
+        try {                  
+                prep = conectaDAO.getConexao().prepareStatement(sql);                 
+ 
                 prep.setString(1, produto.getNome() );
                 prep.setInt(2, produto.getValor() );
                 prep.setString(3, produto.getStatus() );
@@ -38,8 +32,9 @@ public class ProdutosDAO {
                 prep.execute();
                 prep.close();
                 
-        } catch (SQLException e) {
-                e.printStackTrace();
+        } catch (SQLException e) {           
+                 e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Erro ao cadastrar o produto...");
         }
                  
     }
@@ -48,9 +43,6 @@ public class ProdutosDAO {
         
         return listagem;
     }
-    
-    
-    
         
 }
 
