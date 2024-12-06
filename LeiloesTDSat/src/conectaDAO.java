@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Adm
+ * @author Flavio Brito
  */
 public class conectaDAO {
     
@@ -21,11 +21,11 @@ public class conectaDAO {
         Connection conn = null;
         
         try {
-        
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/uc11?user=root&password=");
+            // Ajustes de inclusão de usuário e senha de acesso ao banco de dados
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/uc11?user=admin&password="); 
             
         } catch (SQLException erro){
-            JOptionPane.showMessageDialog(null, "Erro ConectaDAO" + erro.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ConectaDAO: " + erro.getMessage());
         }
         return conn;
     }
