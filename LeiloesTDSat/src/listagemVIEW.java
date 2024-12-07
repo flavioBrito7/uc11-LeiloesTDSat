@@ -1,6 +1,7 @@
 
-import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -18,7 +19,7 @@ public class listagemVIEW extends javax.swing.JFrame {
      */
     public listagemVIEW() {
         initComponents();
-        listarProdutos();
+        this.listarProdutos();
     }
 
     /**
@@ -201,25 +202,24 @@ public class listagemVIEW extends javax.swing.JFrame {
     private javax.swing.JTable listaProdutos;
     // End of variables declaration//GEN-END:variables
 
-    private void listarProdutos(){
-        try {
-            ProdutosDAO produtosdao = new ProdutosDAO();
+    private void listarProdutos(){  
+        
+        ProdutosDAO produtosdao = new ProdutosDAO();    
+        List<ProdutosDTO> listaDeProdutos = produtosdao.listarProdutos();
+        
+        DefaultTableModel tabelaProdutos = (DefaultTableModel) listaProdutos.getModel();
+        tabelaProdutos.setNumRows(0);
+                      
+        for(ProdutosDTO p : listaDeProdutos ){ 
             
-            DefaultTableModel model = (DefaultTableModel) listaProdutos.getModel();
-            model.setNumRows(0);
-            
-            ArrayList<ProdutosDTO> listagem = produtosdao.listarProdutos();
-            
-            for(int i = 0; i < listagem.size(); i++){
-                model.addRow(new Object[]{
-                    listagem.get(i).getId(),
-                    listagem.get(i).getNome(),
-                    listagem.get(i).getValor(),
-                    listagem.get(i).getStatus()
-                });
+                Object[] obj= (new Object[]{
+                          p.getId(),
+                          p.getNome(),
+                          p.getValor(),
+                          p.getStatus()
+                 });
+                 tabelaProdutos.addRow(obj);
+               
             }
-        } catch (Exception e) {
-        }
-    
-    }
+     }
 }
