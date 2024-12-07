@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Adm
+ * @author Flavio Brito
  */
 public class cadastroVIEW extends javax.swing.JFrame {
 

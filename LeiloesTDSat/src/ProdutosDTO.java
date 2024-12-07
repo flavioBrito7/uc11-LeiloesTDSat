@@ -1,7 +1,7 @@
 
 /**
  *
- * @author Adm
+ * @author Flavio Brito
  */
 public class ProdutosDTO {
     private int id;
