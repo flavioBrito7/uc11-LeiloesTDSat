@@ -7,7 +7,7 @@ Um novo projeto na empresa está sendo iniciado. Desta vez, uma casa de leilões
 
 
 ## Tecnologias Empregadas 🛠
-Alinhadas às metodologias ágeis de desenvlvimento, serão utilizadas tecnologias modernas para o desenvolvimento da ferramenta: 
+Alinhadas às metodologias ágeis de desenvlvimento, serão utilizadas tecnologias modernas para a criação da solução: 
 
 #### Backend
 - Java
