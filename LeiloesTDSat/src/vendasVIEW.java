@@ -134,7 +134,7 @@ public class vendasVIEW extends javax.swing.JFrame {
     private void listarProdutosVendidos(){  
         
         ProdutosDAO produtosdao = new ProdutosDAO();    
-        List<ProdutosDTO> listaDeProdutosVendidos = produtosdao.listarProdutos();
+        List<ProdutosDTO> listaDeProdutosVendidos = produtosdao.listarProdutosVendidos();
         
         DefaultTableModel tabelaProdutos = (DefaultTableModel) listaProdutosVendidos.getModel();
         tabelaProdutos.setNumRows(0);
