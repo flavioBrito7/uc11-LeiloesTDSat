@@ -1,5 +1,6 @@
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -12,6 +13,7 @@ public class listagemVIEW extends javax.swing.JFrame {
 
     public listagemVIEW() {
         initComponents();
+        this.setLocationRelativeTo( null );
         this.listarProdutos();
     }
 
@@ -46,7 +48,8 @@ public class listagemVIEW extends javax.swing.JFrame {
         jScrollPane1.setViewportView(listaProdutos);
 
         jLabel1.setFont(new java.awt.Font("Lucida Fax", 0, 18)); // NOI18N
-        jLabel1.setText("Lista de Produtos");
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Lista de Produtos a Venda");
 
         jLabel2.setFont(new java.awt.Font("Lucida Fax", 0, 14)); // NOI18N
         jLabel2.setText("Vender Produto (ID)");
@@ -81,6 +84,7 @@ public class listagemVIEW extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -95,10 +99,6 @@ public class listagemVIEW extends javax.swing.JFrame {
                             .addComponent(btnVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(49, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(193, 193, 193))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,10 +125,16 @@ public class listagemVIEW extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
+        
         String id = id_produto_venda.getText();  
-        ProdutosDAO produtosdao = new ProdutosDAO();       
-        produtosdao.venderProduto(Integer.parseInt(id));
-        listarProdutos();
+        
+        if (id.isEmpty()){
+              JOptionPane.showMessageDialog(null, "Por favor, preencha o campo correspondente: 'Vender Produto (ID)'");
+        } else {
+            ProdutosDAO produtosdao = new ProdutosDAO();       
+            produtosdao.venderProduto(Integer.parseInt(id));
+            listarProdutos();
+        }
     }//GEN-LAST:event_btnVenderActionPerformed
 
     private void btnVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendasActionPerformed
@@ -138,12 +144,11 @@ public class listagemVIEW extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVendasActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        cadastroVIEW cadastro = new cadastroVIEW();       
+        cadastro.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -192,7 +197,7 @@ public class listagemVIEW extends javax.swing.JFrame {
     private void listarProdutos(){  
         
         ProdutosDAO produtosdao = new ProdutosDAO();    
-        List<ProdutosDTO> listaDeProdutos = produtosdao.listarProdutos();
+        List<ProdutosDTO> listaDeProdutos = produtosdao.listarProdutosAVenda();
         
         DefaultTableModel tabelaProdutos = (DefaultTableModel) listaProdutos.getModel();
         tabelaProdutos.setNumRows(0);

@@ -13,6 +13,7 @@ public class cadastroVIEW extends javax.swing.JFrame {
      */
     public cadastroVIEW() {
         initComponents();
+        this.setLocationRelativeTo( null );
     }
 
     @SuppressWarnings("unchecked")
@@ -158,11 +159,10 @@ public class cadastroVIEW extends javax.swing.JFrame {
     private void btnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutosActionPerformed
         listagemVIEW listagem = new listagemVIEW(); 
         listagem.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnProdutosActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

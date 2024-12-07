@@ -2,7 +2,6 @@
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
-
 /**
  *
  * @author Flavio Brito
@@ -12,6 +11,7 @@ public class vendasVIEW extends javax.swing.JFrame {
 
     public vendasVIEW() {
         initComponents();
+        this.setLocationRelativeTo( null );
         this.listarProdutosVendidos();
     }
 
@@ -88,9 +88,6 @@ public class vendasVIEW extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
